@@ -11,7 +11,7 @@ int main(void) {
   int score=0;
   FILE *f;
    
-  printf("%s%c%c\n","Content-Type:text/html;charset=iso-8859-1",13,10);
+  printf("%s%c%c\n","Content-Type:text/html;charset=iso-8859-1\n\n",13,10);
   printf("<html>\n");
   printf("<title>Results</title>\n");
   printf("<body>\n");
@@ -24,7 +24,7 @@ int main(void) {
     printf("<p>Error! Error in passing data from form to script.");
 	}
   else {
-		for(ctr1=0; ctr1<strlen(data);ctr1++){
+		for(ctr1=0; ctr1<(int)strlen(data);ctr1++){
 			if(data[ctr1]=='='){
 				ctr1++;
 				if (ctr2==10){
@@ -61,7 +61,7 @@ int main(void) {
  		putchar(c);
 		}
 		printf("</p><br>\n");
-		rewind;
+		rewind(f);
 		while ((c = fgetc(f)) != EOF) {
 			if (c == '+') {
 				fseek(f, -1, SEEK_CUR);
@@ -73,7 +73,7 @@ int main(void) {
 		printf("<p>Score: %d<br>", score);
 }
 	
-  printf("<br><button onclick=""goBack()"">Back Questionnaire</button>\n");
+  printf("<br><button onclick=""goBack()"">Back to Questionnaire</button>\n");
   printf("<script>function goBack() {\n");
   printf("window.history.back();}</script>\n");
   printf("</body>\n");
